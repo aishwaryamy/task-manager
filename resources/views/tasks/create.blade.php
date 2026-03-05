@@ -1,31 +1,29 @@
-<!doctype html>
-<html>
-<head><meta charset="utf-8"><title>Create Task</title></head>
-<body style="font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto;">
-    <h1>Create Task</h1>
+@extends('layouts.app')
 
-    @if($errors->any())
-        <div style="padding:10px; background:#ffe4e6; border:1px solid #fecdd3;">
-            <ul>
-                @foreach($errors->all() as $e) <li>{{ $e }}</li> @endforeach
-            </ul>
-        </div>
-    @endif
+@section('content')
 
-    <form method="POST" action="{{ route('tasks.store') }}">
-        @csrf
-        <div style="margin-bottom: 10px;">
-            <label>Title</label><br>
-            <input name="title" value="{{ old('title') }}" style="width:100%; padding:8px;">
-        </div>
+<h1>Create Task</h1>
 
-        <div style="margin-bottom: 10px;">
-            <label>Description</label><br>
-            <textarea name="description" style="width:100%; padding:8px;" rows="4">{{ old('description') }}</textarea>
-        </div>
+@if($errors->any())
+<ul>
+@foreach($errors->all() as $error)
+<li>{{ $error }}</li>
+@endforeach
+</ul>
+@endif
 
-        <button type="submit">Save</button>
-        <a href="{{ route('tasks.index') }}">Cancel</a>
-    </form>
-</body>
-</html>
+<form method="POST" action="{{ route('tasks.store') }}">
+
+@csrf
+
+<label>Title</label><br>
+<input name="title" value="{{ old('title') }}"><br><br>
+
+<label>Description</label><br>
+<textarea name="description">{{ old('description') }}</textarea><br><br>
+
+<button type="submit">Save</button>
+
+</form>
+
+@endsection

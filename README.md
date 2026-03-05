@@ -108,7 +108,7 @@ php artisan serve
 Open your browser and go to:
 
 ```
-http://127.0.0.1:8000/tasks
+http://127.0.0.1:8000
 ```
 
 You will see the **Task Management dashboard**.
