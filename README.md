@@ -114,6 +114,19 @@ http://127.0.0.1:8000
 You will see the **Task Management dashboard**.
 
 ---
+# Screenshots
+
+## Task List
+
+![Task List](screenshots/tasks-page.png)
+
+## Create Task
+
+![Create Task](screenshots/create-task.png)
+
+## Edit Task
+
+![Edit Task](screenshots/edit-task.png)
 
 # Application Structure
 
