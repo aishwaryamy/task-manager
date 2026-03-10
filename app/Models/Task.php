@@ -17,4 +17,32 @@ class Task extends Model
         'is_completed' => 'boolean',
         'completed_at' => 'datetime',
     ];
+
+    public function attachments()
+    {
+        return $this->hasMany(TaskAttachment::class);
+    }
+
+    public function subtasks()
+    {
+        return $this->hasMany(Subtask::class);
+    }
+
+    public function updateCompletionFromSubtasks(): void
+    {
+        $total = $this->subtasks()->count();
+        $completed = $this->subtasks()->where('status', 'completed')->count();
+
+        if ($total > 0 && $total === $completed) {
+            $this->update([
+                'is_completed' => true,
+                'completed_at' => now(),
+            ]);
+        } else {
+            $this->update([
+                'is_completed' => false,
+                'completed_at' => null,
+            ]);
+        }
+    }
 }

@@ -1,29 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="top-bar">
+    <h1>Create Task</h1>
+    <a href="{{ route('tasks.index') }}" class="btn btn-secondary">← Back to Main Page</a>
+</div>
 
-<h1>Create Task</h1>
+<form method="POST" action="{{ route('tasks.store') }}" enctype="multipart/form-data" class="section">
+    @csrf
 
-@if($errors->any())
-<ul>
-@foreach($errors->all() as $error)
-<li>{{ $error }}</li>
-@endforeach
-</ul>
-@endif
+    <label>Title</label>
+    <input type="text" name="title" value="{{ old('title') }}">
 
-<form method="POST" action="{{ route('tasks.store') }}">
+    <label>Description</label>
+    <textarea name="description">{{ old('description') }}</textarea>
 
-@csrf
+    <label>Attachments</label>
+    <input type="file" name="attachments[]" multiple>
 
-<label>Title</label><br>
-<input name="title" value="{{ old('title') }}"><br><br>
-
-<label>Description</label><br>
-<textarea name="description">{{ old('description') }}</textarea><br><br>
-
-<button type="submit">Save</button>
-
+    <button type="submit" class="btn">Save Task</button>
 </form>
-
 @endsection

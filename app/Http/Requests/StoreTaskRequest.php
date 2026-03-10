@@ -16,6 +16,8 @@ class StoreTaskRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:150'],
             'description' => ['nullable', 'string', 'max:2000'],
+            'attachments' => ['nullable', 'array'],
+            'attachments.*' => ['file', 'mimes:jpg,jpeg,png,pdf,doc,docx,txt', 'max:2048'],
         ];
     }
 }
