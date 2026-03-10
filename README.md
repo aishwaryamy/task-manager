@@ -1,26 +1,100 @@
 # Laravel Task Manager
 
-A simple **Task Management web application** built with **Laravel**.
+A simple **Task Management Web Application** built using **Laravel**.
 
-## Features
-
-* Create Task
-* Edit Task
-* Delete Task
-* Mark Task as Completed
-* Filter Tasks (Completed / Pending)
-* Validation for form inputs
+The application allows users to manage tasks, upload files, create subtasks, and track completion status.
 
 ---
 
-# Requirements
+# Features
 
-Make sure you have the following installed:
+### Task Management
 
-* PHP 8.2+
-* Composer
+* Create a task
+* Edit a task
+* Delete a task
+* Mark a task as completed or pending
+
+### Attachments
+
+* Upload **multiple files** to a task
+* File validation (type and size)
+* View uploaded attachments
+
+### Subtasks
+
+* Create subtasks under a main task
+* Edit and delete subtasks
+* Update subtask status (pending/completed)
+
+### Automatic Task Completion
+
+* When **all subtasks are completed**, the **main task automatically becomes completed**
+
+### Search and Filter
+
+* Search tasks by:
+
+  * Title
+  * Description
+  * Status
+* Filter tasks by:
+
+  * Pending
+  * Completed
+
+### UI Improvements
+
+* Clean layout using Blade
+* Back to main page button
+* Pagination for task list
+
+---
+
+# Tech Stack
+
+* Laravel 11
+* PHP
 * MySQL
-* Git
+* Blade Templates
+* HTML / CSS
+
+---
+
+# Project Structure
+
+```
+app/
+ ├── Models
+ │   ├── Task.php
+ │   ├── Subtask.php
+ │   └── TaskAttachment.php
+ │
+ ├── Http
+ │   ├── Controllers
+ │   │   ├── TaskController.php
+ │   │   └── SubtaskController.php
+ │   │
+ │   └── Requests
+ │       ├── StoreTaskRequest.php
+ │       └── UpdateTaskRequest.php
+
+database/
+ └── migrations
+     ├── create_tasks_table.php
+     ├── create_subtasks_table.php
+     └── create_task_attachments_table.php
+
+resources/
+ └── views
+     └── tasks
+         ├── index.blade.php
+         ├── create.blade.php
+         └── edit.blade.php
+
+routes/
+ └── web.php
+```
 
 ---
 
@@ -28,45 +102,37 @@ Make sure you have the following installed:
 
 ### 1. Clone the repository
 
-```bash
-git clone https://github.com/aishwaryamy/task-manager.git
+```
+git clone https://github.com/YOUR_USERNAME/task-manager.git
 ```
 
 ### 2. Navigate to the project folder
 
-```bash
+```
 cd task-manager
 ```
 
----
-
 ### 3. Install dependencies
 
-```bash
+```
 composer install
 ```
 
----
+### 4. Copy environment file
 
-### 4. Copy the environment file
-
-```bash
+```
 cp .env.example .env
 ```
 
----
-
 ### 5. Generate application key
 
-```bash
+```
 php artisan key:generate
 ```
 
----
-
 ### 6. Configure database
 
-Open `.env` and update database credentials:
+Open `.env` and update:
 
 ```
 DB_CONNECTION=mysql
@@ -77,9 +143,9 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Create the database in MySQL:
+Create the database:
 
-```sql
+```
 CREATE DATABASE task_manager;
 ```
 
@@ -87,17 +153,23 @@ CREATE DATABASE task_manager;
 
 ### 7. Run migrations
 
-```bash
+```
 php artisan migrate
 ```
 
-This will create the required database tables.
+---
+
+### 8. Link storage (for file uploads)
+
+```
+php artisan storage:link
+```
 
 ---
 
-### 8. Start the Laravel server
+### 9. Start the server
 
-```bash
+```
 php artisan serve
 ```
 
@@ -105,7 +177,7 @@ php artisan serve
 
 # Access the Application
 
-Open your browser and go to:
+Open the browser:
 
 ```
 http://127.0.0.1:8000
@@ -114,43 +186,16 @@ http://127.0.0.1:8000
 You will see the **Task Management dashboard**.
 
 ---
-# Screenshots
 
-## Task List
+# Usage
 
-![Task List](screenshots/tasks-page.png)
-
-## Create Task
-
-![Create Task](screenshots/create-task.png)
-
-## Edit Task
-
-![Edit Task](screenshots/edit-task.png)
-
-# Application Structure
-
-```
-app/
- ├── Models/Task.php
- ├── Http/
- │    ├── Controllers/TaskController.php
- │    └── Requests/
- │         ├── StoreTaskRequest.php
- │         └── UpdateTaskRequest.php
-
-database/
- └── migrations/create_tasks_table.php
-
-resources/
- └── views/tasks/
-      ├── index.blade.php
-      ├── create.blade.php
-      └── edit.blade.php
-
-routes/
- └── web.php
-```
+1. Create a new task
+2. Upload attachments
+3. Add subtasks
+4. Update subtask status
+5. When all subtasks are completed, the main task is automatically completed
+6. Search tasks using the search bar
+7. Edit or delete tasks anytime
 
 ---
 
